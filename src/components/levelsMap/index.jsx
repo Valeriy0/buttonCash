@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useMemo, useState } from "react";
+import { Level } from "../Level";
 
-export const LevelsMap = () => {
-
+export const LevelsMap = ({ currentLevel }) => {
     const levelsInfo = [
         {
             level: 1,
@@ -30,31 +30,73 @@ export const LevelsMap = () => {
             price: '',
             isActive: false,
         },
-
-
-
+        {
+            level: 6,
+            price: '',
+            isActive: false,
+        },
+        {
+            level: 7,
+            price: '',
+            isActive: false,
+        },
+        {
+            level: 8,
+            price: '',
+            isActive: false,
+        },
+        {
+            level: 9,
+            price: '',
+            isActive: false,
+        },
+        {
+            level: 10,
+            price: '',
+            isActive: false,
+        },
+        {
+            level: 11,
+            price: '',
+            isActive: false,
+        },
+        {
+            level: 12,
+            price: '',
+            isActive: false,
+        },
     ]
+
+    const customStyle = useMemo(() => {
+        const positionButtonCash = document.getElementById('button-cash');
+        const positionCurrentLevel = document.getElementById(`level-1`);
+
+        const dataButtonCash = positionButtonCash?.getBoundingClientRect();
+        const dataCurrentLevel = positionCurrentLevel?.getBoundingClientRect();
+
+        let temp = dataButtonCash?.left - dataButtonCash?.width / 10;
+
+        const mapPadding = currentLevel === 1 ? temp : temp - dataCurrentLevel?.width * (currentLevel - 1);
+        if (mapPadding) {
+            return ({ left: `${mapPadding}px` });
+        }
+    }, [currentLevel]);
+
     return (
-        <div className="bg-[#292D38] right-0 rounded-[20px] h-[190px] main_block_shadow">
-            <div className="flex items-end justify-end h-full px-6 py-6 space-x-3 ">
-                {levelsInfo.map((item, itemIndex) => {
-                    return (
-                    <div className={`px-[60px] h-full flex items-center justify-center rounded-[15px] ${ itemIndex % 2 === 0 ? `levels_bg_even ${item.isActive ? "levels_green_shadow" : ""}` : `levels_bg_uneven ${item.isActive ? "levels_red_shadow" : ""}`} relative`}>
-                        <div className="flex flex-col items-center justify-center z-[1] leading-6 ">
-                    <span className={`${item.isActive ? "text-white" : "text-[#151515]"} font-overlock text-6xl font-extrabold`}>{itemIndex + 1}</span>
-                            <span className={`${item.isActive ? "text-white" : "text-[#151515]"} text-white font-montserrat text-[33px]`}>Level</span>
+        <div className="h-[190px] w-full relative">
+            <div style={customStyle} className="absolute bg-[#292D38] rounded-[20px] h-full main_block_shadow w-full">
+                <div className="flex items-center justify-start h-full px-6 py-6 space-x-3 ">
+                    {levelsInfo.map((item, itemIndex) => {
+                        return <Level {...item} key={itemIndex} />
+                    })}
+                    {/* <div className=" px-[60px] h-full flex items-center justify-center rounded-[15px] levels_bg_uneven levels_red_shadow relative">
+                        <div className="flex flex-col items-center justify-center z-[1] leading-6">
+                            <span className="text-white font-overlock text-6xl font-extrabold">2</span>
+                            <span className="text-white font-montserrat text-[33px]">Level</span>
                         </div>
-                        <img className={`${item.isActive ? "absolute" : "hidden"} z-[0] bottom-0 h-[60%]`} src={`/levelsCard/${ itemIndex % 2 === 0 ? "green_shadow.png " : "red_shadow.png"}`}/>
-                    </div>
-                    )
-                })}
-                {/* <div className=" px-[60px] h-full flex items-center justify-center rounded-[15px] levels_bg_uneven levels_red_shadow relative">
-                    <div className="flex flex-col items-center justify-center z-[1] leading-6">
-                        <span className="text-white font-overlock text-6xl font-extrabold">2</span>
-                        <span className="text-white font-montserrat text-[33px]">Level</span>
-                    </div>
-                    <img className="absolute z-[0] bottom-0 h-[60%]" src="/levelsCard/red_shadow.png"/>
-                </div> */}
+                        <img className="absolute z-[0] bottom-0 h-[60%]" src="/levelsCard/red_shadow.png"/>
+                    </div> */}
+                </div>
             </div>
         </div>
     )

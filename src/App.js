@@ -1,20 +1,35 @@
 import './App.css';
 import { LevelsMap } from './components/levelsMap';
+import { useState } from 'react';
 function App() {
+  const [currentLevel, setCurrentLevel] = useState(1);
+
+  const setNextLevel = () => {
+    if (currentLevel < 12) {
+      setCurrentLevel(currentLevel + 1)
+    }
+  }
+
+  const setPrevLevel = () => {
+    if (currentLevel > 1) {
+      setCurrentLevel(currentLevel - 1)
+    }
+  }
+
   return (
     <div className="bg-[#151516] h-screen w-full flex flex-col space-y-10 items-center justify-center relative overflow-hidden">
-      <LevelsMap /> 
+      <LevelsMap currentLevel={currentLevel} setCurrentLevel={setCurrentLevel} /> 
       <div className="flex items-center justify-center space-x-10 z-[11]">
-        <button className="w-[62px] h-[62px] rounded-full bg-[#292D38] arrow_button_shadow flex items-center justify-center">
+        <button onClick={() => setPrevLevel()} className="w-[62px] h-[62px] rounded-full bg-[#292D38] arrow_button_shadow flex items-center justify-center">
           <img className="pr-1" src="/left_arrow.svg"/>
         </button>
         <div className="relative w-[300px] flex items-center justify-center pb-15 ">
-          <button className="circle flex items-center justify-center">
+          <button id={'button-cash'} className="circle flex items-center justify-center">
             <img src="cash.png" /> 
           </button>
           <img className="absolute top-0 h-[275px] w-[260px]" src="/button_bg.png"/> 
         </div>
-        <button className="w-[62px] h-[62px] rounded-full bg-[#292D38] arrow_button_shadow flex items-center justify-center">
+        <button onClick={() => setNextLevel()} className="w-[62px] h-[62px] rounded-full bg-[#292D38] arrow_button_shadow flex items-center justify-center">
           <img className="pl-1" src="/right_arrow.svg"/>
         </button>
        
