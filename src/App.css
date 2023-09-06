@@ -1,0 +1,107 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:600&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Overlock:wght@900&display=swap'); /* overlock */
+
+
+body {
+  top: 0 !important;
+}
+
+.font-montserrat {
+  font-family: 'Montserrat', sans-serif;
+}
+
+.font-overlock {
+  font-family: 'Overlock', sans-serif;
+}
+
+
+
+.cyrcle_shadow_inset {
+  box-shadow: 0px 0px 20px 0px #00000073;
+  box-shadow: 0px 0px 5px 0px #BDE7FF59 inset;
+}
+
+.cyrcle_shadow {
+  box-shadow: 0px 0px 20px 0px #00000073;
+  box-shadow: 0px 0px 5px 0px #BDE7FF59;
+}
+
+.button_shadow {
+  box-shadow: 0px 0px 10px 0px #00000026;
+  box-shadow: 0px 0px 4px 0px #FFFFFF26 inset;
+}
+
+.green_button_shadow {
+  box-shadow: 0px 0px 40px 0px #00FF38A6;
+}
+
+
+
+
+
+.main_block_shadow {
+  box-shadow: 0px 0px 5px 0px #BDE7FF59 inset;
+
+}
+
+.arrow_button_shadow {
+  box-shadow: 0px 0px 4px 0px #FFFFFF26 inset;
+}
+
+.timer_bg {
+  background: linear-gradient(180deg, #141414 0%, #202020 100%), linear-gradient(180deg, rgba(63, 63, 63, 0) 0%, rgba(106, 106, 106, 0.4) 100%);
+}
+
+.timer_text_color {
+  background: linear-gradient(155deg, #B2BCBC 9.18%, rgba(62, 189, 198, 0.00) 130.69%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.levels_bg_even {
+  background: linear-gradient(0deg, #21252C, #21252C), linear-gradient(243.43deg, #484D56 5.19%, rgba(7, 10, 16, 0) 97.19%);
+}
+
+.levels_bg_uneven {
+  background: linear-gradient(0deg, #464C5B, #464C5B), linear-gradient(245.32deg, #777E8E 3.62%, rgba(35, 35, 35, 0) 95.75%);
+
+}
+
+.levels_green_shadow {
+  box-shadow: 0px 0px 25px 0px #48FF44BF inset, 0px 0px 10px 0px #FFFFFF inset;
+}
+
+.levels_red_shadow {
+  box-shadow: 0px 0px 10px 0px #0000008C, 0px 0px 25px 0px #FF4444BF inset, 0px 0px 10px 0px #FF4444 inset;
+
+}
+
+.levels_white_shadow {
+  box-shadow: 0px 0px 10px 0px #FFFFFF inset;
+}
+
+
+.circle{
+  text-align:center;
+  background:#4BC632;
+  height:200px;
+  width:200px;
+  color:white;
+  font-size:16px;
+  text-decoration:none;
+  box-shadow:0px 30px 0px #050 ;
+  border-radius:50%;
+  border: none;
+  z-index: 11;
+}
+.circle:active{
+  transform:translatey(20px);
+  box-shadow:0px 0px 0px #005 ; 
+}
