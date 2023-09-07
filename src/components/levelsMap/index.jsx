@@ -76,15 +76,15 @@ export const LevelsMap = ({ currentLevel }) => {
 
         let temp = dataButtonCash?.left - dataButtonCash?.width / 10;
 
-        const mapPadding = currentLevel === 1 ? temp : temp - dataCurrentLevel?.width * (currentLevel - 1);
+        const mapPadding = currentLevel === 1 ? temp : temp - dataCurrentLevel?.width * (currentLevel - 2);
         if (mapPadding) {
             return ({ left: `${mapPadding}px` });
         }
     }, [currentLevel]);
 
     return (
-        <div className="h-[190px] w-full relative">
-            <div style={customStyle} className="absolute bg-[#292D38] rounded-[20px] h-full main_block_shadow w-full">
+        <div className="h-[190px] w-full relative sm:h-[175px]">
+            <div style={customStyle} className="absolute bg-[#292D38] rounded-[20px] h-full main_block_shadow ">
                 <div className="flex items-center justify-start h-full px-6 py-6 space-x-3 ">
                     {levelsInfo.map((item, itemIndex) => {
                         return <Level {...item} key={itemIndex} />
