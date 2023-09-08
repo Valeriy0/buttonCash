@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from "react";
 import { Level } from "../Level";
 
-export const LevelsMap = ({ currentLevel }) => {
+export const LevelsMap = ({ currentLevel}) => {
     const levelsInfo = [
         {
             level: 1,
@@ -16,13 +16,13 @@ export const LevelsMap = ({ currentLevel }) => {
         {
             level: 3,
             price: '',
-            isActive: false,
+            isActive: true,
         },
 
         {
             level: 4,
             price: '',
-            isActive: false,
+            isActive: true,
         },
 
         {
@@ -82,20 +82,29 @@ export const LevelsMap = ({ currentLevel }) => {
         }
     }, [currentLevel]);
 
+
+
     return (
-        <div className="h-[190px] w-full relative sm:h-[175px]">
-            <div style={customStyle} className="absolute bg-[#292D38] rounded-[20px] h-full main_block_shadow ">
+        <div className="h-[190px] w-full relative ">
+            <div style={customStyle} className={`absolute bg-[#292D38] rounded-[20px] h-full main_block_shadow`}>
                 <div className="flex items-center justify-start h-full px-6 py-6 space-x-3 ">
                     {levelsInfo.map((item, itemIndex) => {
-                        return <Level {...item} key={itemIndex} />
+                        const isChoose = currentLevel === itemIndex;
+                        return (
+                            <div className="h-full relative">
+                                <Level {...item} key={itemIndex} />
+                                <div className={`absolute top-0 border-[12px] border-[#29EDB2] h-[150px] w-full rounded-[15px]`}>
+                                   <div className="absolute bottom-[-1px] left-1/2 -translate-x-1/2  ">
+                                        <div class="w-0 h-0 
+                                            border-l-[30px] border-l-transparent
+                                            border-b-[20px] border-b-[#29EDB2]
+                                            border-r-[30px] border-r-transparent">
+                                        </div>
+                                    </div> 
+                                </div>
+                            </div>
+                        ) 
                     })}
-                    {/* <div className=" px-[60px] h-full flex items-center justify-center rounded-[15px] levels_bg_uneven levels_red_shadow relative">
-                        <div className="flex flex-col items-center justify-center z-[1] leading-6">
-                            <span className="text-white font-overlock text-6xl font-extrabold">2</span>
-                            <span className="text-white font-montserrat text-[33px]">Level</span>
-                        </div>
-                        <img className="absolute z-[0] bottom-0 h-[60%]" src="/levelsCard/red_shadow.png"/>
-                    </div> */}
                 </div>
             </div>
         </div>
