@@ -28,6 +28,7 @@ function App() {
             <button id={'button-cash'} className="circle flex items-center justify-center">
               <img src="cash.png" /> 
             </button>
+            <img className="absolute top-1 h-[220px] w-[220px]" src="/buttonShadow.png"/> 
             <img className="absolute top-0 h-[275px] w-[260px]" src="/button_bg.png"/> 
           </div>
           <button onClick={() => setNextLevel()} className="w-[62px] h-[62px] rounded-full bg-[#292D38] arrow_button_shadow flex items-center justify-center">
