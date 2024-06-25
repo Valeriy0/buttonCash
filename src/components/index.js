@@ -1,1 +1,2 @@
-export { LevelsMap } from './levelsMap';
+export { LevelsMap } from "./levelsMap";
+export { ConnectWallet } from "./ConnectWallet";
