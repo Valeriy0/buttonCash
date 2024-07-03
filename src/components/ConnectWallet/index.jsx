@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
 import { WALLETS } from "../../connectors/wallets";
 import { useTryActivation } from "../../helpers/hooks/useTryActivation";

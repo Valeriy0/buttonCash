@@ -1,11 +1,4 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
 
-
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:600&display=swap');
-
-@import url('https://fonts.googleapis.com/css2?family=Overlock:wght@900&display=swap'); /* overlock */
 
 
 body {
@@ -40,8 +33,6 @@ body {
 .green_button_shadow {
   box-shadow: 0px 0px 40px 0px #00FF38A6;
 }
-
-
 
 
 

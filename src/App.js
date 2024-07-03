@@ -1,8 +1,7 @@
 import { useMemo } from "react";
-import Main from "./Main";
 import { Web3ReactProvider } from "@web3-react/core";
 
-import "./App.css";
+import "./style.scss";
 
 import {
   metaMask,
@@ -10,6 +9,7 @@ import {
   walletConnectV2Hooks,
   walletConnectV2,
 } from "./connectors/wallets";
+import { RoutesFind } from "./RoutesFind";
 
 function App() {
   const connectors = useMemo(() => {
@@ -21,7 +21,7 @@ function App() {
 
   return (
     <Web3ReactProvider connectors={connectors}>
-      <Main />
+     <RoutesFind />
     </Web3ReactProvider>
   );
 }
