@@ -10,3 +10,12 @@
 .font-jerbrains {
     font-family: "JetBrains Mono", monospace;
   }
+
+
+.trapezoid {
+  border-bottom: 50px solid #1AF012;
+	border-left: 25px solid transparent;
+	border-right: 25px solid transparent;
+	height: 0;
+	width: 125px;
+}

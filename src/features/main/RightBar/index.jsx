@@ -19,7 +19,7 @@ export const RightBar = () => {
                 <span>/ Frens Pr0f1t: [3.45] BNB</span>
                 <span>/ C0d1ng Frens C0unt: [4]</span>
             </div>
-            <img className="pt-6" src="/icons/main/rightBar/donut.svg"/>
+            <img className="absolute pt-[180px]" src="/icons/main/rightBar/donut.svg"/>
         </div>
     )
 }
