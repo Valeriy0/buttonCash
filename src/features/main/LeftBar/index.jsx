@@ -2,9 +2,7 @@ import React from "react";
 
 export const LeftBar = () => {
     return (
-        <div className="flex flex-col space-y-12 max-w-[260px] w-full">
-            <div className="flex flex-col space-y-6">
-                <span className="uppercase font-bold text-[32px]">Button CA$H</span>
+        <div className="flex flex-col space-y-12 max-w-[260px] w-full sm:hidden"> 
                 <div className="flex flex-col space-y-4">
                     <div className="flex w-full justify-between">
                         <span>tokens</span>
@@ -20,7 +18,6 @@ export const LeftBar = () => {
                         </button>
                     </div>
                 </div>
-            </div>
             <div className="flex flex-col space-y-6 p-4 w-full border-[1px] border-green rounded-xl">
                 <div className="flex w-full justify-between">
                     <span className="text-2xl ">Your reward</span>
