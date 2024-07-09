@@ -1,8 +1,16 @@
+/* eslint-disable prettier/prettier */
 import { LevelsMap, ConnectWallet } from "./components";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { CONTRACT_NAMES } from "./helpers/constants";
+import { useGetContract } from "./helpers/hooks/useGetContract";
+import { useWeb3React } from "@web3-react/core";
+import { toWei } from "./helpers/numbers";
 
 function Main() {
   const [currentLevel, setCurrentLevel] = useState(1);
+  const [user, setUser] = useState([]);
+  const { getContract } = useGetContract();
+  const { account } = useWeb3React();
 
   const setNextLevel = () => {
     if (currentLevel < 12) {
@@ -16,76 +24,93 @@ function Main() {
     }
   };
 
+  useEffect(() => {
+    if (account) {
+      getUserData();
+      getUserData2();
+    }
+  }, [account]);
+
+  const getUserData = async () => {
+    try {
+      const contractButton = await getContract(CONTRACT_NAMES.BUTTON);
+      console.log(contractButton.address)
+      const result = await contractButton.getUserData(
+        "0x90f2f9E443F87f612a2e126c8a090F7B40bDdF06"
+      );
+
+      setUser(result);
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  const getUserData2 = async () => {
+    try {
+      const contractButton = await getContract(CONTRACT_NAMES.BUTTON);
+      const result = await contractButton.getUserData2(
+        "0x90f2f9E443F87f612a2e126c8a090F7B40bDdF06"
+      );
+
+      console.log(result, 1234);
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  const upgradeLvl = async () => {
+    try {
+      const contractButton = await getContract(CONTRACT_NAMES.BUTTON);
+      const result = await contractButton.buyNewLevel(3, {
+        value: toWei(0.0001),
+      });
+
+      console.log(result);
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  const register = async () => {
+    try {
+      const contractButton = await getContract(CONTRACT_NAMES.BUTTON);
+      const result = await contractButton.registation(
+        1,
+        "0x90f2f9E443F87f612a2e126c8a090F7B40bDdF06",
+      );
+
+      console.log(result);
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  console.log(user, 111);
+
   return (
     <div className="bg-[#151516] h-screen w-full flex flex-col space-y-10 items-center justify-center relative overflow-hidden">
       <ConnectWallet />
-      <LevelsMap
-        currentLevel={currentLevel}
-        setCurrentLevel={setCurrentLevel}
-      />
-      <div className="flex items-center justify-center space-x-10 z-[11] sm:flex-col sm:items-center sm:justify-center sm:space-y-10 sm:space-x-0">
-        <div className="flex items-center sm:space-x-14">
-          <button
-            onClick={() => setPrevLevel()}
-            className="w-[62px] h-[62px] rounded-full bg-[#292D38] arrow_button_shadow flex items-center justify-center"
-          >
-            <img className="pr-1" src="/left_arrow.svg" />
-          </button>
-          <div className="relative w-[300px] flex items-center justify-center pb-15 sm:hidden ">
-            <button
-              id={"button-cash"}
-              className="circle flex items-center justify-center"
-            >
-              <img src="cash.png" />
-            </button>
-            <img
-              className="absolute top-1 h-[220px] w-[220px]"
-              src="/buttonShadow.png"
-            />
-            <img
-              className="absolute top-0 h-[275px] w-[260px]"
-              src="/button_bg.png"
-            />
-          </div>
-          <button
-            onClick={() => setNextLevel()}
-            className="w-[62px] h-[62px] rounded-full bg-[#292D38] arrow_button_shadow flex items-center justify-center"
-          >
-            <img className="pl-1" src="/right_arrow.svg" />
-          </button>
-        </div>
-        <div className="hidden sm:flex relative w-[300px] flex items-center justify-center pb-15">
-          <button
-            id={"button-cash"}
-            className="circle flex items-center justify-center"
-          >
-            <img src="cash.png" />
-          </button>
-          <img
-            className="absolute top-0 h-[275px] w-[260px]"
-            src="/button_bg.png"
-          />
-        </div>
+
+      <div className="flex flex-col space-y-2.5">
+        <button
+          className="p-2 bg-white-100 hover:bg-white-500 rounded"
+          onClick={() => getUserData()}
+        >
+          Info about user
+        </button>
+        <button
+          className="p-2 bg-white-100 hover:bg-white-500 rounded"
+          onClick={() => register()}
+        >
+          Register
+        </button>
+        <button
+          className="p-2 bg-white-100 hover:bg-white-500 rounded"
+          onClick={() => upgradeLvl(1)}
+        >
+          Upgrade lvl
+        </button>
       </div>
-      <div className="flex flex-col items-center justify-center space-y-1 absolute bottom-3">
-        <span className="font-montserrat text-lg text-white sm:text-sm">
-          Time to activate 4 level
-        </span>
-        <div className="timer_bg w-[245px] h-[42px] z-[11] rounded-full font-montserrat font-bold text-[22px] flex justify-between items-center px-5 sm:w-[200px] sm:h-[34px] sm:text-lg ">
-          <span className="timer_text_color">1d</span>
-          <span className="timer_text_color">20h</span>
-          <span className="timer_text_color">20m</span>
-          <span className="timer_text_color">20s</span>
-        </div>
-      </div>
-      <img
-        className="absolute bottom-0 z-[1] w-[80%] sm:hidden "
-        src="/green_shadow.png"
-      />
-      <img
-        className="hidden sm:block absolute bottom-0 z-[1] sm:w-full  "
-        src="/green_shadowMob.png"
-      />
     </div>
   );
 }
